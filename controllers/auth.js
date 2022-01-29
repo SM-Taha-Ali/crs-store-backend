@@ -9,15 +9,18 @@ const JWT_SECRET = "clix123#p$rO"
 
 async function createUser(req, res) {
     // Check whether the user with this email already exists
+
+    let success = false
+
     try {
         const errors = validationResult(req);
         // Checking if validations are fulfilled
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ success, errors: errors.array() });
         }
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(400).json({ error: "Sorry a user with this email already exists." })
+            return res.status(400).json({ success, error: "Sorry a user with this email already exists." })
         }
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(req.body.password, salt);
@@ -37,25 +40,27 @@ async function createUser(req, res) {
         }
         const authToken = jwt.sign(data, JWT_SECRET);
         console.log(authToken);
-        res.json({ authToken });
+        success = true
+        res.json({ success, authToken });
     }
     catch (error) {
         console.log(error);
-        res.status(500).send("Internal server error")
+        res.status(500).send( success, "Internal server error")
     }
 
 }
 
 async function loginAuth(req, res) {
+    let success = false;
     try {
         const { email, password } = req.body;
         let user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ error: "Invalid Email or Password" })
+            return res.status(400).json({ success, error: "Invalid Email or Password" })
         }
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
-            return res.status(400).json({ error: "Invalid Email or Password" })
+            return res.status(400).json({ success, error: "Invalid Email or Password" })
         }
 
         // Sending the user object as a response
@@ -65,7 +70,8 @@ async function loginAuth(req, res) {
             }
         }
         const authToken = jwt.sign(data, JWT_SECRET);
-        res.json({ authToken });
+        success = true
+        res.json({ success, authToken });
     }
     catch (error) {
         console.log(error);

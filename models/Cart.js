@@ -6,10 +6,22 @@ const CartSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'products'
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
+    name: {
+        type: String,
+        required: true
+    },
     quantity: {
         type: Number,
         required: true
     },
+    price: {
+        type: Number,
+        required: true
+    }
 });
 
 const Cart = mongoose.model('cart',CartSchema)

@@ -11,6 +11,7 @@ router.post('/addproduct',
         body('name', 'This field is required.').isLength({ min: 2 }),
         body('description', 'This field is required.').isLength({ min: 2 }),
         body('price', 'This field is required.').isLength({ min: 1 }),
+        body('category', 'This field is required.').isLength({ min: 1 }),
         body('quantity', 'This field is required.').isLength({ min: 1 }),
     ],
     productsController.addProduct
@@ -24,5 +25,8 @@ router.put('/updateproduct/:id', productsController.updateProduct);
 
 // DELETE NOTE
 router.delete('/deleteproduct/:id', productsController.deleteProduct);
+
+// GET PRODUCT DETAIL
+router.get('/getproductdetails/:id', productsController.getProductDetails);
 
 module.exports = router; 

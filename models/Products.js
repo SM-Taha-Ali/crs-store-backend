@@ -18,6 +18,10 @@ const ProductsSchema = new Schema({
         type: Number,
         default: 0
     },
+    category: {
+        type: String,
+        required: true
+    },
     quantity: {
         type: Number,
         required: true

@@ -22,6 +22,10 @@ const UserSchema = new Schema({
   phoneno: {
       type: String,
       required: true
+  },
+  role: {
+    type: Boolean,
+    default: false
   }
 });
 

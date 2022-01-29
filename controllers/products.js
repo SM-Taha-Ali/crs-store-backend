@@ -16,6 +16,7 @@ async function addProduct(req, res) {
             description: req.body.description,
             price: req.body.price,
             quantity: req.body.quantity,
+            category: req.body.category,
             discount: req.body.discount
         })
         const savedProduct = await product.save();
@@ -48,12 +49,13 @@ async function updateProduct(req, res) {
     try {
         let product = await Products.findById(req.params.id);
         if (!product) { return res.status(404).send("Not found!") }
-        const { name, description, price, quantity, discount } = req.body;
+        const { name, description, price, quantity, discount, category } = req.body;
         const newProduct = {};
         if (name) { newProduct.name = name }
         if (description) { newProduct.description = description }
         if (price) { newProduct.price = price }
         if (quantity) { newProduct.quantity = quantity }
+        if (category) { newProduct.category = category }
         if (discount) { newProduct.discount = discount }
         product = await Products.findByIdAndUpdate(req.params.id, { $set: newProduct }, { new: true })
         res.json(product);
@@ -79,11 +81,26 @@ async function deleteProduct(req, res) {
 }
 
 
+// GET PRODUCT DETAILS
+
+async function getProductDetails(req, res) {
+    try {
+        var productID = req.params.id;
+        const product = await Products.findById(productID);
+        res.send(product);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send("Internal server error")
+    }
+}
+
 
 module.exports = {
     getProduct,
     addProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductDetails
 }
 
