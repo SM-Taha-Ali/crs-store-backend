@@ -8,7 +8,10 @@ async function makePayment(req, res) {
     try {
         const payment = new Payment({
             user: req.user.id,
-            product: req.params.id,
+            order: req.params.id,
+            card_number: req.body.card_number,
+            ccv: req.body.ccv,
+            card_expiry: req.body.card_expiry,
         })
         const savedPayment = await payment.save();
         res.json(savedPayment);

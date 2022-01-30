@@ -6,10 +6,22 @@ const PaymentSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    product: {
+    order: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'products'
+        ref: 'orders'
     },
+    card_number:{
+        type: Number,
+        default: null
+    },
+    ccv: {
+        type: Number,
+        default: null
+    },
+    card_expiry: {
+        type: Date,
+        default: null
+    }
 });
 
 const Payment = mongoose.model('payment',PaymentSchema)

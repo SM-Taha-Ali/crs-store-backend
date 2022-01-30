@@ -2,7 +2,7 @@ const { validationResult } = require('express-validator');
 const Cart = require('../models/Cart');
 
 
-// CREATE ORDER
+// ADD TO CART
 
 async function addToCart(req, res) {
     try {
@@ -28,7 +28,7 @@ async function addToCart(req, res) {
 
 
 
-// RETRIEVE PRODUCTS
+// RETRIEVE CART ITEMS
 
 async function getItem(req, res) {
     try {
@@ -42,7 +42,7 @@ async function getItem(req, res) {
 
 
 
-// UPDATE PRODUCT
+// UPDATE CART ITEM
 
 async function updateItem(req, res) {
     try {
@@ -70,7 +70,7 @@ async function updateItem(req, res) {
 
 
 
-// DELETE PRODUCT
+// DELETE CART ITEM
 
 async function deleteItem(req, res) {
     try {

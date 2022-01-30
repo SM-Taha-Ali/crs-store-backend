@@ -50,5 +50,14 @@ router.get(
 )
 
 
+// Fetching all users
+router.get(
+  // Route Path
+  '/getallusers',
+  // Authenticating User
+  authController.getAllUser
+)
+
+
 
 module.exports = router;
