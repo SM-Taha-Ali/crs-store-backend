@@ -89,10 +89,24 @@ async function deleteItem(req, res) {
 }
 
 
+// EMPTY CART 
+
+async function emptyCart(req, res) {
+    try {
+        await Cart.deleteMany({user: req.user.id})
+        res.send("Success")
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal server error")
+    }
+}
+
+
 module.exports = {
     getItem,
     addToCart,
     updateItem,
-    deleteItem
+    deleteItem,
+    emptyCart
 }
 

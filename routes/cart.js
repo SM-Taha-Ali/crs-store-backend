@@ -11,13 +11,16 @@ router.post('/addtocart/:id',
     cartController.addToCart
 );
 
-// RETRIEVE ORDERS
+// RETRIEVE CART ITEMS
 router.get('/getitem', fetchuser, cartController.getItem);
 
-// UPDATE ORDER
+// UPDATE CART ITEM QUANTITY
 router.put('/updateitem/:id', fetchuser, cartController.updateItem);
 
-// DELETE ORDER
+// DELETE CART ITEM
 router.delete('/deleteitem/:id', fetchuser, cartController.deleteItem);
+
+// EMPTY CART
+router.delete('/emptycart/', fetchuser, cartController.emptyCart);
 
 module.exports = router; 

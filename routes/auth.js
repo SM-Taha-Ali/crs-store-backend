@@ -49,6 +49,14 @@ router.get(
   authController.getUser
 )
 
+// Fetching user details by id
+router.post(
+  // Route Path
+  '/getuserbyid',
+  // Authenticating User
+  authController.getUserById
+)
+
 
 // Fetching all users
 router.get(

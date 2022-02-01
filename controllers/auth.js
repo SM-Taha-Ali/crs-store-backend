@@ -91,6 +91,18 @@ async function getUser(req, res) {
     }
 }
 
+async function getUserById(req, res) {
+    try {
+        var userID = req.body.user_id;
+        const user = await User.findById(userID).select("-password");
+        res.send(user);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send("Internal server error")
+    }
+}
+
 async function getAllUser(req, res) {
     try {
         const users = await User.find().select("-password");
@@ -107,5 +119,6 @@ module.exports = {
     createUser,
     loginAuth,
     getUser,
-    getAllUser
+    getAllUser,
+    getUserById
 }

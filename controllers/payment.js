@@ -9,6 +9,7 @@ async function makePayment(req, res) {
         const payment = new Payment({
             user: req.user.id,
             order: req.params.id,
+            owner: req.body.owner,
             card_number: req.body.card_number,
             ccv: req.body.ccv,
             card_expiry: req.body.card_expiry,

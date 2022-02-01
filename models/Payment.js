@@ -10,6 +10,10 @@ const PaymentSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'orders'
     },
+    owner: {
+        type: String,
+        default: null
+    },
     card_number:{
         type: Number,
         default: null

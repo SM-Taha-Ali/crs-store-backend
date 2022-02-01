@@ -19,16 +19,19 @@ const OrdersSchema = new Schema({
         required: true
     },
     contact: {
-        type: Number,
+        type: String,
         required: true
     },
     postal_code: {
-        type: Number,
+        type: String,
         required: true
     },
     status: {
         type: String,
-        default: "Packed",
+        default: '1',
+    },
+    date: {
+        type: Date
     }
 });
 

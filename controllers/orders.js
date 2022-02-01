@@ -13,7 +13,8 @@ async function makeOrder(req, res) {
             address: req.body.address,
             contact: req.body.contact,
             postal_code: req.body.postal_code,
-            city: req.body.city
+            city: req.body.city,
+            date: req.body.date
         })
         const savedOrder = await order.save();
         res.json(savedOrder);
