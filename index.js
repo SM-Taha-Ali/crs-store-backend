@@ -17,6 +17,7 @@ app.use('/api/products', require('./routes/products'))
 app.use('/api/orders', require('./routes/orders'))
 app.use('/api/cart', require('./routes/cart'))
 app.use('/api/payment', require('./routes/payment'))
+app.use('/api/wish', require('./routes/wish.js'))
 
 
 app.listen(port, () => {

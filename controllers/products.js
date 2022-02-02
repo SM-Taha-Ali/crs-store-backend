@@ -17,7 +17,8 @@ async function addProduct(req, res) {
             price: req.body.price,
             quantity: req.body.quantity,
             category: req.body.category,
-            discount: req.body.discount
+            discount: req.body.discount,
+            img: req.body.img
         })
         const savedProduct = await product.save();
         res.json(savedProduct);
