@@ -13,6 +13,7 @@ async function makePayment(req, res) {
             card_number: req.body.card_number,
             ccv: req.body.ccv,
             card_expiry: req.body.card_expiry,
+            total_price: req.body.total_price
         })
         const savedPayment = await payment.save();
         res.json(savedPayment);

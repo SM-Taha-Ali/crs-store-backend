@@ -25,6 +25,10 @@ const PaymentSchema = new Schema({
     card_expiry: {
         type: Date,
         default: null
+    },
+    total_price: {
+        type: Number,
+        required: true
     }
 });
 
