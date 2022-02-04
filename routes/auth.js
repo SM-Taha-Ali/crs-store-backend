@@ -45,7 +45,7 @@ router.get(
   '/getuser',
   // MiddleWare
   fetchuser,
-  // Authenticating User
+  // fetching user details
   authController.getUser
 )
 
@@ -53,8 +53,16 @@ router.get(
 router.post(
   // Route Path
   '/getuserbyid',
-  // Authenticating User
+  // getting user by id
   authController.getUserById
+)
+
+// Updating role and status of user (admin side)
+router.put(
+  // Route Path
+  '/updateuser',
+  // Updating user role and status
+  authController.updateRole_Status
 )
 
 
@@ -62,7 +70,6 @@ router.post(
 router.get(
   // Route Path
   '/getallusers',
-  // Authenticating User
   authController.getAllUser
 )
 

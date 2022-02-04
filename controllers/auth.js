@@ -45,7 +45,7 @@ async function createUser(req, res) {
     }
     catch (error) {
         console.log(error);
-        res.status(500).send( success, "Internal server error")
+        res.status(500).send(success, "Internal server error")
     }
 
 }
@@ -71,7 +71,7 @@ async function loginAuth(req, res) {
         }
         const authToken = jwt.sign(data, JWT_SECRET);
         success = true
-        res.json({ success, authToken });
+        res.json({ success, authToken, user_status:user.status });
     }
     catch (error) {
         console.log(error);
@@ -114,11 +114,29 @@ async function getAllUser(req, res) {
     }
 }
 
+async function updateRole_Status(req, res) {
+    try {
+        let item = await User.findById(req.body.id);
+        if (!item) { return res.status(404).send("Not found!") }
+        const { status } = req.body;
+        const { role } = req.body;
+        const newItem = {};
+        if ("boolean" === typeof(status)) { newItem.status = status }
+        if ("boolean" === typeof(role)) { newItem.role = role }
+        item = await User.findByIdAndUpdate(req.body.id, { $set: newItem }, { new: true })
+        res.json(newItem);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal server error")
+    }
+}
+
 
 module.exports = {
     createUser,
     loginAuth,
     getUser,
     getAllUser,
-    getUserById
+    getUserById,
+    updateRole_Status
 }
