@@ -7,7 +7,7 @@ const Cart = require('../models/Cart');
 async function addToCart(req, res) {
     try {
         const errors = validationResult(req);
-        // Checking if validations are fulfilled
+        // Checking if validations of body are fulfilled
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }

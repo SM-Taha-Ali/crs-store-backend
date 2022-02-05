@@ -122,7 +122,7 @@ async function updateRole_Status(req, res) {
         const { role } = req.body;
         const newItem = {};
         if ("boolean" === typeof(status)) { newItem.status = status }
-        if ("boolean" === typeof(role)) { newItem.role = role }
+        if (role) { newItem.role = role }
         item = await User.findByIdAndUpdate(req.body.id, { $set: newItem }, { new: true })
         res.json(newItem);
     } catch (error) {
